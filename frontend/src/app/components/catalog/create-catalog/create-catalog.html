@@ -1,0 +1,7 @@
+
+<h1>Catalogo  de {{ username }} ¡¡¡¡</h1>
+<ul>
+  @for(catalog of catalogs; track catalog.name) {
+    <li (click)="createCatalog(catalog.name)"> {{ catalog.name }} - {{ catalog.description }} </li>
+  }
+</ul>
