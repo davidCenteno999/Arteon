@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import userRoutes from './routes/UserRoute';
 
@@ -11,8 +12,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors()); // Configura CORS según necesidades
+app.use(cors(
+  {
+    origin: process.env.CORS_ORIGIN || 'http://localhost:4200', // Cambia esto según tu frontend
+    credentials: true, // Permite enviar cookies y encabezados de autorización
+  }
+)); // Configura CORS según necesidades
 app.use(express.json()); // Para parsear JSON
+app.use(cookieParser());
 
 // Conexión a MongoDB
 mongoose

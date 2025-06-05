@@ -54,7 +54,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         const token = jwt.sign(
             { userId: user._id },
             process.env.JWT_SECRET || 'secret',
-            { expiresIn: '1h' }
+            { expiresIn: '1d' }
         );
 
         // Send response with token
@@ -77,8 +77,13 @@ export const verifyUser = async (req: Request, res: Response): Promise<void> => 
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
-       
-        res.status(200).json({ message: 'User verified', user: decoded });
+        const dataUser = await User.findById((decoded as any).userId, '-password -updatedAt -createdAt'); // Exclude password and updatedAt fields
+        if (!dataUser) {
+            res.status(404).json({ message: 'User not found' });
+            return;
+        }
+
+        res.status(200).json({ message: 'User verified', user: dataUser });
     } catch (error) {
         console.error('Error verifying user:', error);
         res.status(401).json({ message: 'Unauthorized' });
@@ -97,3 +102,17 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
         return;
     }
 }
+
+export const logoutUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+        res.clearCookie('token'); // Clear the token cookie
+        res.status(200).json({ message: 'Logout successful' });
+        return;
+    }
+    catch (error) {
+        console.error('Error logging out user:', error);
+        res.status(500).json({ message: 'Internal server error' });
+        return;
+    }
+};
+

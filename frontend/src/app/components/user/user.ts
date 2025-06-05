@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CreateCatalog } from '../catalog/create-catalog/create-catalog';
+
 
 @Component({
   selector: 'app-user',
-  imports: [CreateCatalog],
+  imports: [],
   templateUrl: './user.html',
   styleUrl: './user.css'
 })

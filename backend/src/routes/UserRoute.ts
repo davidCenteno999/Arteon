@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { registerUser, loginUser, verifyUser } from '../controllers/userController';
+import { registerUser, loginUser, verifyUser, logoutUser } from '../controllers/userController';
 
 const router = Router();
 
@@ -9,5 +9,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 // Route for verifying user
 router.get('/verify', verifyUser);
+// Route for user logout
+router.post('/logout', logoutUser);
 
 export default router;

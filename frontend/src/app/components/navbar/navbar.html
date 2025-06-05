@@ -2,12 +2,26 @@
   <button matIconButton class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Arteon</span>
+  <span routerLink="/">Arteon</span>
   <span class="example-spacer"></span>
   <button matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>add</mat-icon>
   </button>
-  <button matIconButton class="example-icon" >  
-    <mat-icon>person</mat-icon>
-  </button>
+  @if (this.userService.isLoggedIn()) {
+    <button matIconButton class="example-icon" routerLink="/profile">
+      <mat-icon>person</mat-icon>
+    </button>
+  }@else {
+    <button matIconButton class="example-icon" routerLink="/login">
+      <mat-icon>person</mat-icon>
+    </button> 
+  }
+  
+  @if ( this.userService.isLoggedIn()) {
+    <button matIconButton class="example-icon" (click)="this.logOutUser()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  }  
+
+  
 </mat-toolbar> 

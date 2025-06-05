@@ -1,17 +1,2 @@
-<p>user works!</p>
 
-@if (isLoggedIn) {
-<p>Welcome, {{ username }}!</p>
-<app-create-catalog 
-(catalogCreated)="setCatalog($event)"
-username="{{ username }}"></app-create-catalog>
-} @else {
-<p>Please log in to access your account.</p>
-
-}
-
-<p>Create Catalog:</p>
-@if (create_catalog != '') {
-    <p>Catalog Name: {{ create_catalog }}</p>
-}
 
