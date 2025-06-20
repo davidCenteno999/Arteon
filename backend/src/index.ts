@@ -5,7 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 import userRoutes from './routes/UserRoute';
-
+import catalogRoutes from './routes/catalogRoute';
 dotenv.config();
 
 const app = express();
@@ -33,6 +33,7 @@ mongoose
 
 // Rutas
 app.use('/api/users', userRoutes);
+app.use('/api/catalog', catalogRoutes);
 
 // Ruta base
 app.get('/', (req, res) => {

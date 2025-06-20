@@ -1,0 +1,58 @@
+<div class="container">
+    <mat-card class = "mat-card1">
+        <mat-card-header>
+            <mat-card-title>Create Catalog</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class = "mat_card_content1">
+            <mat-form-field appearance="fill">
+                <mat-icon matPrefix>badge</mat-icon>
+                <mat-label>Catalog Name</mat-label>
+                <input matInput type="text" required [(ngModel)]="catalog.name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+               
+                <mat-label>Description</mat-label>
+                <textarea matInput rows="4" required [(ngModel)]="catalog.description"></textarea>
+            </mat-form-field>
+             <mat-form-field appearance="fill">
+                <mat-icon matPrefix>add_link</mat-icon>
+                <mat-label>WebSite</mat-label>
+                <input matInput type="text" required [(ngModel)]="catalog.socialMedia.website">
+            </mat-form-field>
+           
+            <mat-label class = "mat_label_social">Social Media</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-icon matPrefix>account_box</mat-icon>
+                <mat-label> Social Media Name</mat-label>
+                <input matInput type="text" required [(ngModel)]="socialMedia.name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-icon matPrefix>link</mat-icon>
+                <mat-label> Social Media Links</mat-label>
+                <input matInput type="text" required [(ngModel)]="socialMedia.url">
+            </mat-form-field>
+            <button  matFab  class="add_button"  (click)="addSocialMediaLink()" backgroundColor="green">
+                <mat-icon class="add_icon" >add</mat-icon>
+              <p class="add_icon">Add</p>
+            </button>
+            <mat-label class = "mat_label_social" >
+                Visibility
+            </mat-label>
+            <mat-form-field appearance="fill">
+                <mat-icon matPrefix>visibility</mat-icon>
+                <mat-label>Catalog Visibility</mat-label>
+                <mat-select [(ngModel)]="catalog.visibility">
+                    <mat-option value="public">Public</mat-option>
+                    <mat-option value="private">Private</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+             <button  matFab  class="add_button2" (click)="addCatalog()" >
+                <mat-icon class="add_icon" >add</mat-icon>
+              <p class="add_icon">Add Catalog</p>
+            </button>
+        </mat-card-actions>
+            
+    </mat-card>
+</div>

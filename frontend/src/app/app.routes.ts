@@ -4,6 +4,7 @@ import { User } from './components/user/user';
 import { Register } from './components/user/register/register';
 import {Profile} from './components/user/profile/profile';
 import {Login} from './components/user/login/login';
+import { CreateCatalog } from './components/catalog/create-catalog/create-catalog';
 import { authGuard } from './auth-guard';
 
 export const routes: Routes = [
@@ -12,4 +13,5 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'profile', component: Profile, canActivate: [authGuard] },
   { path: 'login', component: Login },
+  { path: 'catalog/create', component: CreateCatalog, canActivate: [authGuard] },
 ];

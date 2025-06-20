@@ -14,6 +14,7 @@ const catalogSchema = new mongoose.Schema({
   },
   likes: { type: Number, default: 0 },
   visibility: { type: String, enum: ["public", "private"], default: "public" },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });

@@ -6,6 +6,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,8 +17,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class Profile {
   public userService = inject(UserService);
+  public router = inject(Router);
   ngnInit(){
     console.log(this.userService.getToken());
+  }
+
+  createCatalog() {
+    this.router.navigate(['/catalog/create']);
   }
   
 }

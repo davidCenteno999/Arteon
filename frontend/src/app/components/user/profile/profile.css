@@ -1,4 +1,4 @@
-mat-card {
+.card1 {
     width: 400px;
     height: 300px;
     justify-self: center;
@@ -25,4 +25,33 @@ label {
 
     margin-right: 10px;
     
+}
+
+
+.card2 {
+    width: 200px;
+    height: 300px;
+    justify-self: center;
+    display: flex;
+    margin-top: 20px;
+}
+
+.contariner_user_actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 20px; 
+}
+
+.button_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    margin: 5px 0;
+    width: 150px;
+    height: 40px;
 }
