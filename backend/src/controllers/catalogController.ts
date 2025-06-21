@@ -13,7 +13,7 @@ export const createCatalog = async (req: Request, res: Response): Promise<void> 
         }
         const newCatalog = new Catalog({
             ...catalogData,
-            user: userId
+            owner: userId,
         });
         await newCatalog.save();
         user.catalogsId.push(newCatalog._id);

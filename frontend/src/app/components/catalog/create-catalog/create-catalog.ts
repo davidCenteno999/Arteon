@@ -57,17 +57,22 @@ export class CreateCatalog {
     }
   }
 
-  async addCatalog() {
+  addCatalog() {
     try {
       // Validación básica antes de enviar el catálogo
       
 
-      // Llamada asincrónica al servicio para crear el catálogo
-      const response = await this.catalogService.createCatalog(this.catalog);
-      console.log('Catalog created successfully:', response);
-
-      // Opcional: Reinicia el formulario después de crear el catálogo
-      this.resetCatalog();
+      this.catalogService.createCatalog(this.catalog).subscribe({
+        next: (response) => {
+          console.log('Catalog created successfully:', response);
+          this.resetCatalog(); // Reiniciar el formulario después de crear el catálogo
+          alert('Catalog created successfully!');
+        },
+        error: (error) => {
+          console.error('Error creating catalog:', error);
+         
+        } 
+      });
     } catch (error) {
       console.error('Error creating catalog:', error);
       // Opcional: Manejo adicional de errores

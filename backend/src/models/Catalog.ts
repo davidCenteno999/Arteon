@@ -10,7 +10,7 @@ const catalogSchema = new mongoose.Schema({
   awards: [{ type: String }],
   socialMedia: {
     website: { type: String },
-    socialMediaLinks: [{ type: String }]
+    socialMediaLinks: [{ name: String, url: String }]
   },
   likes: { type: Number, default: 0 },
   visibility: { type: String, enum: ["public", "private"], default: "public" },
