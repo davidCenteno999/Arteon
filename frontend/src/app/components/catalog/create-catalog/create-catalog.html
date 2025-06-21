@@ -46,6 +46,14 @@
                     <mat-option value="private">Private</mat-option>
                 </mat-select>
             </mat-form-field>
+             <mat-label class = "mat_label_social">Uplaod Logo</mat-label>
+            <input type="file" (change)="onFileSelected($event)" />
+            <button (click)="uploadImage()">Upload</button>
+            @if(catalog.image.url != null) {
+                <div class="image-preview">
+                    <img [src]="catalog.image.url" alt="Catalog Image" />
+                </div>
+            }
         </mat-card-content>
         <mat-card-actions>
              <button  matFab  class="add_button2" (click)="addCatalog()" >

@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { CatalogService } from '../../../services/catalog-service';
+import { UploadService } from '../../../services/upload-service';
 
 @Component({
   selector: 'app-create-catalog',
@@ -21,6 +22,10 @@ export class CreateCatalog {
 
   catalog: {
     name: string,
+    image: {
+      public_id: string,
+      url: string},
+    
     description: string,
     artDesigns: any[],
     members: any[],
@@ -33,6 +38,10 @@ export class CreateCatalog {
     visibility: string
   } = {
     name: '',
+    image: {
+      public_id: '',
+      url: ''
+    },
     description: '',
     artDesigns: [],
     members: [],
@@ -49,6 +58,10 @@ export class CreateCatalog {
     name: '',
     url: ''
   }
+
+  selectedFile!: File;
+  uploadedImageUrl: string | null = null;
+  public uploadService = inject(UploadService);
 
   addSocialMediaLink() {
     if (this.socialMedia.name.trim() !== '' || this.socialMedia.url.trim() !== '') {
@@ -84,6 +97,10 @@ export class CreateCatalog {
   resetCatalog() {
     this.catalog = {
       name: '',
+      image: {
+        public_id: '',
+        url: ''
+      },
       description: '',
       artDesigns: [],
       members: [],
@@ -97,5 +114,34 @@ export class CreateCatalog {
     };
     this.socialMedia = { name: '', url: '' };
   }
+
+   onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files[0]) {
+      this.selectedFile = target.files[0];
+    }
+  }
+
+  uploadImage() {
+    if (this.selectedFile) {
+      this.uploadService.uploadImage(this.selectedFile).subscribe({
+        next: (response) => {
+          console.log('Image uploaded successfully:', response);
+          
+          this.catalog.image.url = response.secure_url; // Assuming the response contains the secure URL
+          this.catalog.image.public_id = response.public_id; // Assuming the response contains the public ID
+          
+        },
+        error: (error) => {
+          console.error('Error uploading image:', error);
+          alert('Failed to upload image. Please try again.');
+        }
+      });
+    } else {
+      alert('Please select a file to upload.');
+    }
+  }
+
+ 
 
 }

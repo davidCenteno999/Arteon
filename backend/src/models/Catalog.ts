@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 const catalogSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  image: { public_id : String, url: String },
   description: { type: String, required: true },
   artDesigns: [{ type: mongoose.Schema.Types.ObjectId, ref: "ArtDesign" }],
   members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
