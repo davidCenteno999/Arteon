@@ -1,15 +1,22 @@
+.base_container {
+    display: flex;
+    justify-self: center
+}
+
 .mat-card1 {
     display: flex;
     justify-self: center;
+    
     margin-top: 20px;
     width:  600px;
-    height: 800px;
+    height: auto;
+    margin-bottom: 30px;
 }
 
 .mat_card_content1 {
     display: flex;
     flex-direction: column;
-    
+    margin-top: 10px;
 }
 
 .mat_label_social {
@@ -43,7 +50,25 @@
     border-radius: 10%;
     display: flex;
     align-self: flex-end;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
+
+.delete_button {
+    background-color: rgb(255, 0, 0);
+    margin-top: 2px;
+    width: 75px;
+    height: 40px;
+    border-radius: 10%;
+    display: flex;
+    align-self: flex-end;
+    
+}
+
+.delete_icon {
+    color: rgb(255, 255, 255);
+}
+
 
 
 mat-card-actions {
@@ -51,4 +76,56 @@ mat-card-actions {
     justify-content: center;
     margin-top: 20px;
     
+}
+
+.container_image {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+
+.row-container {
+   /* background-color: rgb(241, 215, 200);*/
+  display: flex;
+  flex-direction: row; /* opcional porque ya es por defecto */
+  gap: 25px; /* espacio entre los elementos */
+  
+}
+
+
+.row-containe2 {
+   /* background-color: rgb(241, 215, 200);*/
+  display: flex;
+  flex-direction: row; /* opcional porque ya es por defecto */
+  justify-content: space-between;
+  align-items: center
+}
+
+.item {
+  
+  padding: 20px;
+  flex: 1; /* hace que ambos tengan el mismo tamaño */
+  text-align: center; /* opcional, para centrar el contenido */
+}
+
+.upload_button {
+    background-color: rgb(95, 207, 95);
+    margin-left: 60px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10%;
+    display: flex;
+    align-self: flex-end;
+}
+
+.container_image_upload {
+    background-color: rgb(247, 223, 209);
+    border-radius: 5px;
+    border-bottom: 1px solid #1b1009;
 }

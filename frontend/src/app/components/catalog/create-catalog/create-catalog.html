@@ -1,4 +1,4 @@
-<div class="container">
+<div class="base_container">
     <mat-card class = "mat-card1">
         <mat-card-header>
             <mat-card-title>Create Catalog</mat-card-title>
@@ -20,6 +20,24 @@
                 <input matInput type="text" required [(ngModel)]="catalog.socialMedia.website">
             </mat-form-field>
            
+            @if(catalog.socialMedia.socialMediaLinks.length > 0) {
+                <mat-label class = "mat_label_social">Social Media List</mat-label>
+                <mat-list>
+                    @for(link of catalog.socialMedia.socialMediaLinks; track link) {
+                        
+                        <mat-list-item>              
+                            <div class = "row-containe2">
+                                <a [href]="link.url" target="_blank" class="social_media_link">{{link.name}}</a>
+                                 <button  matFab  class="delete_button"  (click)="deleteSocialMedia(link.name)">
+                                    <mat-icon class="delete_icon" >delete</mat-icon>
+                                    <p class="delete_icon">Delete</p>
+                                </button>
+                            </div>        
+                        </mat-list-item>
+                        
+                    }
+                </mat-list>
+            }
             <mat-label class = "mat_label_social">Social Media</mat-label>
             <mat-form-field appearance="fill">
                 <mat-icon matPrefix>account_box</mat-icon>
@@ -46,14 +64,26 @@
                     <mat-option value="private">Private</mat-option>
                 </mat-select>
             </mat-form-field>
-             <mat-label class = "mat_label_social">Uplaod Logo</mat-label>
-            <input type="file" (change)="onFileSelected($event)" />
-            <button (click)="uploadImage()">Upload</button>
-            @if(catalog.image.url != null) {
-                <div class="image-preview">
-                    <img [src]="catalog.image.url" alt="Catalog Image" />
-                </div>
+             <mat-label class = "mat_label_social">Catalog Logo</mat-label>
+             <div class = "container_image_upload">
+             @if(catalog.image.url != '') {
+                
+                    <img class="container_image" [src]="catalog.image.url" alt="Catalog Image" />
+                
             }
+            <div class="row-container">
+                <div class= "item">
+                    <input type="file" (change)="onFileSelected($event)" />
+                </div>
+                <div class= "item">
+                    <button matFab class="upload_button" (click)="uploadImage()">
+                        <mat-icon class="add_icon" >upload</mat-icon>
+                        <p class="add_icon">Upload</p>
+                    </button>
+                </div>
+            </div>
+            </div>
+            
         </mat-card-content>
         <mat-card-actions>
              <button  matFab  class="add_button2" (click)="addCatalog()" >

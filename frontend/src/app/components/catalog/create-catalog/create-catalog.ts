@@ -6,19 +6,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { CatalogService } from '../../../services/catalog-service';
 import { UploadService } from '../../../services/upload-service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-catalog',
-  imports: [MatCardModule, MatInputModule, MatFormFieldModule, MatIconModule, FormsModule, MatButtonModule, MatTabsModule, MatSelectModule],
+  imports: [MatCardModule, MatInputModule, MatFormFieldModule, MatIconModule, 
+    FormsModule, MatButtonModule, MatTabsModule, MatSelectModule, MatListModule ],
   templateUrl: './create-catalog.html',
   styleUrl: './create-catalog.css'
 })
 export class CreateCatalog {
 
   public catalogService = inject(CatalogService);
+  private _snackBar = inject(MatSnackBar);
+  public router = inject(Router);
 
   catalog: {
     name: string,
@@ -70,6 +76,10 @@ export class CreateCatalog {
     }
   }
 
+  deleteSocialMedia(name : string) {
+    this.catalog.socialMedia.socialMediaLinks = this.catalog.socialMedia.socialMediaLinks.filter(link => link.name !== name);
+  }
+
   addCatalog() {
     try {
       // Validación básica antes de enviar el catálogo
@@ -78,18 +88,20 @@ export class CreateCatalog {
       this.catalogService.createCatalog(this.catalog).subscribe({
         next: (response) => {
           console.log('Catalog created successfully:', response);
+          this.openSnackBar('Catalog created successfully!', 'Close');
           this.resetCatalog(); // Reiniciar el formulario después de crear el catálogo
-          alert('Catalog created successfully!');
+          this.router.navigate(['/profile']); 
         },
         error: (error) => {
+          this.openSnackBar('Error creating catalog', 'Close');
           console.error('Error creating catalog:', error);
          
         } 
       });
     } catch (error) {
       console.error('Error creating catalog:', error);
-      // Opcional: Manejo adicional de errores
-      alert('Failed to create catalog. Please try again.');
+
+      this.openSnackBar('Error creating catalog', 'Close');
     }
   }
 
@@ -130,16 +142,21 @@ export class CreateCatalog {
           
           this.catalog.image.url = response.secure_url; // Assuming the response contains the secure URL
           this.catalog.image.public_id = response.public_id; // Assuming the response contains the public ID
-          
+          this.openSnackBar('Image uploaded successfully!', 'Close');
         },
         error: (error) => {
           console.error('Error uploading image:', error);
           alert('Failed to upload image. Please try again.');
+          this.openSnackBar('Error uploading image', 'Close');
         }
       });
     } else {
-      alert('Please select a file to upload.');
+      this.openSnackBar('Please select an image to upload', 'Close');
     }
+  }
+
+   openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, { duration: 2000 });
   }
 
  

@@ -35,11 +35,11 @@ private _snackBar = inject(MatSnackBar);
     this.userService.registerUser(this.user).subscribe({
       next: (response) => {
         console.log('User registered successfully:', response);
-        this.openSnackBar('¡Registro exitoso!', 'Cerrar');
+        this.openSnackBar('¡Successfully registered user!', 'Close');
         this._router.navigate(['/login']);
       },
       error: (error) => {
-        this.openSnackBar('Error al registrar usuario', 'Cerrar');
+        this.openSnackBar('Error register user', 'Close');
         console.error('Error registering user:', error);
       }
     });
