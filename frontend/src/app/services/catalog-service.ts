@@ -23,4 +23,9 @@ export class CatalogService {
    return this.http.post(`${this.apiUrl}/api/catalog`, data);
   }
 
+  getCatalogs() {
+    return this.http.get(`${this.apiUrl}/api/catalog/`, { withCredentials: true });
+  }
+  
+
 }

@@ -1,6 +1,6 @@
 .card1 {
-    width: 400px;
-    height: 300px;
+    width: 300px;
+    height: 520px;
     justify-self: center;
     display: flex;
     margin-top: 20px;
@@ -18,7 +18,7 @@ mat-card-title {
     font-size: 24px;
     font-weight: bold;
     justify-content: center;
-    color: rgb(255, 196, 86);
+    color: rgb(196, 140, 38);
 }
 
 label {
@@ -29,8 +29,8 @@ label {
 
 
 .card2 {
-    width: 200px;
-    height: 300px;
+    width: 400px;
+    height: 250px;
     justify-self: center;
     display: flex;
     margin-top: 20px;
@@ -54,4 +54,87 @@ button {
     margin: 5px 0;
     width: 150px;
     height: 40px;
+}
+
+.conatiner_columns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+
+
+
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row {
+  cursor: pointer;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail-wrapper {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  grid-template-columns: 100%;
+  transition: grid-template-rows 225ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.example-element-detail-wrapper-expanded {
+  grid-template-rows: 1fr;
+}
+
+.example-element-detail {
+  display: flex;
+  min-height: 0;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.example-toggle-button {
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.example-toggle-button-expanded {
+  transform: rotate(180deg);
 }

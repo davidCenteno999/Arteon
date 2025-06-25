@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import './types/express/index.d.ts'; // Importa tus tipos personalizados para Express
 
 import userRoutes from './routes/UserRoute';
 import catalogRoutes from './routes/catalogRoute';

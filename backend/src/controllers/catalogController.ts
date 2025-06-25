@@ -26,3 +26,20 @@ export const createCatalog = async (req: Request, res: Response): Promise<void> 
         return;
     }
 }
+
+export const getCatalogs = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const userId = (req.user as any)?._id;
+        const catalogs_user = await Catalog.find({ owner: userId });
+        if (!catalogs_user || catalogs_user.length === 0) {
+            res.status(404).json({ message: 'No catalogs found for this user' });
+            return;
+        }
+        res.status(200).json({ catalogs: catalogs_user });
+        return;
+
+    } catch (error) {
+        console.error('Error fetching catalogs:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}

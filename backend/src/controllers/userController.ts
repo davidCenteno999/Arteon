@@ -35,6 +35,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
+     
     try {
         // Find user by email
         const user = await User.findOne({ email });
@@ -56,9 +57,16 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
             process.env.JWT_SECRET || 'secret',
             { expiresIn: '1d' }
         );
+        console.log('✅ Token generado en login:', token);
+        console.log('🕓 Payload:', jwt.decode(token));
 
         // Send response with token
-        res.cookie('token', token);
+        res.cookie('token', token, 
+            {
+                httpOnly: false, // Prevents client-side JavaScript from accessing the token
+                maxAge: 24 * 60 * 60 * 1000 // 1 day in milliseconds
+            }
+        );
         res.status(200).json({ message: 'Login successful', token });
         return;
     } catch (error) {
@@ -70,6 +78,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
 export const verifyUser = async (req: Request, res: Response): Promise<void> => {
     const token = req.cookies.token;
+    console.log('Token received for verification:', token); // For debugging purposes
     if (!token) {
         res.status(401).json({ message: 'Unauthorized' });
         return;
